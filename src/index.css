@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+ header {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr minmax(200px,620px) minmax(120px,280px) 1fr;
+  grid-gap: var(--spacing3);
+ }

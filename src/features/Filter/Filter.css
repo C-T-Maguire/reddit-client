@@ -1,0 +1,26 @@
+.filter-posts {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  border: 0.1rem solid grey;
+  border-radius: 0.4rem;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem;
+  border-radius: 1rem;
+}
+
+.fliter:hover {
+  background-color: blue, 0.2;
+}
+
+#filter-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.1rem;
+}

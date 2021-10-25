@@ -1,10 +1,29 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Header } from '../features/Header/Header';
+import { Filter } from '../features/Filter/Filter';
+import { Posts } from '../features/Posts/Posts';
+import { Home } from '../features/Home/Home';
+import { SubAside } from '../features/SubAside/SubAside';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <p>Welcome to my app</p>
-    </div>
+    <Router>
+      <div id="app-container">
+        <Header />
+        <main>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            {/* <Route path="/r/:id" component={Subreddit} />
+            <Route path="/search/:id" component={SearchResults} />
+            <Route component={NotFoundPage} /> */}
+          </Switch>
+        </main>
+        <aside>
+          <SubAside />
+        </aside>
+      </div>
+    </Router>
   );
 }
 

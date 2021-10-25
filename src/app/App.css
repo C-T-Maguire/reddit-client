@@ -17,3 +17,37 @@
   color: #61dafb;
 }
 
+#app-container {
+  --spacing0: 4px;
+  --spacing1: 8px;
+  --spacing2: 16px;
+  --spacing3: 24px;
+  --radius1: 8px;
+  --radius2: 16px;
+  --radius3: 24px;
+  --radius4: 32px;
+  --font-size0: 1.75rem;
+  --font-size1: 1.5rem;
+  --font-size2: 1.125rem;
+  --font-size3: 1rem;
+  --font-size4: 0.875rem;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  color: var(--color-text-main);
+}
+
+.app-container {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr minmax(200px,620px) minmax(120px,280px) 1fr;
+  grid-gap: var(--spacing3);
+}
+
+main {
+  grid-column-start: 2;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

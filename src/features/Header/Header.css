@@ -1,0 +1,41 @@
+header {
+  height: 40px;
+  background-color:#c8d8ff;
+  border-bottom: solid cornflowerblue 0.1rem;
+  grid-column: 1 / 5;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
+}
+
+.left-header {
+  grid-column: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 32px;
+  width: 32px;
+}
+
+.middle-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
