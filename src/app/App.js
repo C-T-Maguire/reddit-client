@@ -1,9 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Header } from '../features/Header/Header';
-import { Filter } from '../features/Filter/Filter';
-import { Posts } from '../features/Posts/Posts';
 import { Home } from '../features/Home/Home';
-import { SubAside } from '../features/SubAside/SubAside';
+import { Subreddit } from '../features/SubReddit/Subreddit';
+import { SubAside } from '../features/SubAside/SubredditsAside';
 import './App.css';
 
 function App() {
@@ -14,7 +13,8 @@ function App() {
         <main>
           <Switch>
             <Route path="/" exact component={Home} />
-            {/* <Route path="/r/:id" component={Subreddit} />
+            <Route path="/r/:id" component={Subreddit} />
+            {/* 
             <Route path="/search/:id" component={SearchResults} />
             <Route component={NotFoundPage} /> */}
           </Switch>

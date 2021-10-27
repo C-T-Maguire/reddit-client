@@ -20,6 +20,7 @@ time, mark, audio, video {
 
 body {
   margin: 0;
+  background-color: #cacaca79;
   font-family: "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
@@ -41,4 +42,5 @@ h1 {
 
 a {
   text-decoration: none;
+  color: grey;
 }

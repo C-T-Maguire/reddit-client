@@ -1,10 +1,10 @@
 import React from "react";
-import './Home.css';
+import './Subreddit.css';
 import { Filter } from '../Filter/Filter';
 import { Posts } from '../Posts/Posts';
 
 
-export const Home = () => {
+export const Subreddit = () => {
 
   return (
     <div className="home">
@@ -19,4 +19,4 @@ export const Home = () => {
   );
 }
 
-export default Home;
+export default Subreddit;

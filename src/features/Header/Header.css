@@ -1,6 +1,6 @@
 header {
   height: 40px;
-  background-color:#c8d8ff;
+  background-color: white;
   border-bottom: solid cornflowerblue 0.1rem;
   grid-column: 1 / 5;
 }
@@ -38,4 +38,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: left;
+}
+
+a {
+  color: purple;
 }

@@ -1,15 +1,30 @@
 import React from "react";
 import './Posts.css';
+import Card from "../Card/Card";
 import { FaComments } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+
+import { loadHotPosts } from "../../app/appSlice";
 
 // things I need to get from APi
+
+//need to import filter info?
+
 //PostsSubReddit, PostsUsername, HowLongAgoPosted, PostTitle, PostsContent, PostsComments
 
 
 export const Posts = () => {
+  const dispatch = useDispatch();
+  
+
+  //logic
+  //getcurrentSub
+  //getPostInfo
+
+
   return (
 
-    <div className="post-tile">
+    <Card className="post-tile">
       <div className="post-header">
         <span className="subR-name">
           <p>r/CalIsAwesome</p>
@@ -36,7 +51,7 @@ export const Posts = () => {
           </span>
         </div>
       </div>
-    </div>
+    </Card>
 
   )
 }
