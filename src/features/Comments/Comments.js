@@ -1,7 +1,7 @@
 
 import React from "react";
-import { loadComments , setShowingComments, setCommentsNum, selectIsLoading } from "../../app/appSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { loadComments , setShowingComments, setCommentsNum } from "../../app/appSlice";
+import { useDispatch } from "react-redux";
 import { FaComments } from "react-icons/fa";
 import { Comment } from '../Comment/Comment';
 import './Comments.css';
