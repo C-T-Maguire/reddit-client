@@ -1,0 +1,31 @@
+.about-tile {
+  border: 0.1rem solid grey;
+  border-radius: 0.4rem;
+  width: 100%;
+}
+
+h1, h2, h3 {
+  margin-left: 1rem;;
+}
+
+.about-head {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.sub-name {
+  display: flex;
+  flex-direction: column;
+}
+
+#sub-img {
+  width: 6rem;
+  height: 6rem;
+  border: 0.2rem solid black;
+  border-radius: 50%;
+}
+
+.description {
+  padding: 1.5rem;
+}

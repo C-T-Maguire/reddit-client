@@ -21,6 +21,7 @@ time, mark, audio, video {
 body {
   margin: 0;
   background-color: #cacaca79;
+  min-width: 600px;        /* Suppose you want minimum width of 1000px */
   font-family: "Roboto", "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 

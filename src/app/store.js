@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import subredditsAsideReducer  from '../features/SubAside/subredditsAsideSlice';
 import filtersReducer from '../features/Filter/filterSlice';
-import appReducer from '../app/App';
+import appReducer from '../app/appSlice';
 
 const store = configureStore({
   reducer: {

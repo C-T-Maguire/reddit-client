@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectAsideError,
+  // selectAsideError,
   selectCurrentSubreddit,
   selectSubredditNames,
   loadSubNames
@@ -14,7 +14,7 @@ export const SubAside = () => {
   const dispatch = useDispatch();
   const subreddits = useSelector(selectSubredditNames);
   const currentSubreddit = useSelector(selectCurrentSubreddit);
-  const asideError = useSelector(selectAsideError);
+  // const asideError = useSelector(selectAsideError);
 
   useEffect(() => {
     dispatch(loadSubNames());

@@ -1,0 +1,32 @@
+.comment {
+  display: flex;
+  flex-direction: column;
+  border-top: 0.1rem solid black;
+  padding: 0.5rem;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.comment-avatar {
+  border: 0.1rem solid black;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+}
+
+#username {
+  margin-left: 0.75rem;
+}
+
+.comment-text {
+  word-wrap: break-word;
+}

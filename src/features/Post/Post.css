@@ -1,0 +1,30 @@
+.posts {
+  width: 100%;
+}
+
+.post-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-subheader {
+  margin-left: 1rem;
+}
+
+.post-timeAgo {
+  margin-right: 1rem;
+}
+
+.title {
+  padding: 1rem 0;
+}
+
+#post-img {
+  height: 100%;
+  width: 100%;
+}
+
+.comments {
+  padding: 0.75rem;
+}

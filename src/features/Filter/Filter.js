@@ -5,31 +5,17 @@ import capitalizeFirstLetter from "../../utils/capFirstLetter";
 import { VscFlame } from 'react-icons/vsc';
 import { TiStarburstOutline } from 'react-icons/ti';
 import { BsGraphUp } from 'react-icons/bs';
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchHotPosts, fetchNewPosts, fetchTopPosts } from '../../api/api';
 import { selectCurrentSubreddit } from "../SubAside/subredditsAsideSlice";
+import { loadPostsHot, loadPostsNew, loadPostsTop } from '../../app/appSlice';
 import { selectFilters, selectCurrentFilter, setCurrentFilter } from "./filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
-export const loadHotPosts = createAsyncThunk('filter/loadHotPosts', async () => {
-  return await fetchHotPosts();
-});
-
-export const loadNewPosts = createAsyncThunk('filter/loadNewPosts', async () => {
-  return await fetchNewPosts();
-});
-
-export const loadTopPosts = createAsyncThunk('filter/loadTopPosts', async () => {
-  return await fetchTopPosts();
-});
-
 
 export const Filter = () => {
   const filters = useSelector(selectFilters);
   const currentFilter = useSelector(selectCurrentFilter);
   const currentSubreddit = useSelector(selectCurrentSubreddit);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const icons = {
     hot: <VscFlame/>,
@@ -42,16 +28,28 @@ export const Filter = () => {
     dispatch(setCurrentFilter(filter));
     switch(filter) {
       case 'hot':
-        console.log('Hot to show');
+        if(currentSubreddit) {
+          dispatch(loadPostsHot(currentSubreddit));
+        } else {
+          dispatch(loadPostsHot());
+        }
         break;
       case 'new':
-        console.log('New to show');
+        if(currentSubreddit) {
+          dispatch(loadPostsNew(currentSubreddit));
+        } else {
+          dispatch(loadPostsNew());
+        }
         break;
       case 'top':
-        console.log('Top to show');
+        if(currentSubreddit) {
+          dispatch(loadPostsTop(currentSubreddit));
+        } else {
+          dispatch(loadPostsTop());
+        }
         break;
       default:
-        console.log('Not loading');
+        console.log('ERROR in filter');
     }
   }
 

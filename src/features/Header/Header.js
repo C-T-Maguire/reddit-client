@@ -19,7 +19,7 @@ export const Header = () => {
         <Search />
       </div>
       <div className="right-header">
-        <h1> Night Mode Switch </h1>
+        <h1> CM </h1>
       </div>
     </header>
   )

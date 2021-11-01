@@ -1,68 +1,220 @@
-import React from "react";
 import { 
-  fetchHotPosts,
-  fetchNewPosts,
-  fetchTopPosts,
+  fetchPostsHot,
+  fetchPostsNew,
+  fetchPostsTop,
   fetchSubredditAbout,
   fetchSearchResults,
+  fetchComments,
 } from "../api/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const loadHotPosts = createAsyncThunk('app/loadHotPosts', async (subreddit) => {
-  return await fetchHotPosts(subreddit);
-});
+export const loadPostsHot = createAsyncThunk(
+  "app/loadSubredditPostsHot",
+  async (subreddit) => {
+    return await fetchPostsHot(subreddit);
+  }
+);
 
-export const loadNewPosts = createAsyncThunk('app/loadNewPosts', async (subreddit) => {
-  return await fetchNewPosts(subreddit);
-});
+export const loadPostsNew = createAsyncThunk(
+  "app/loadSubredditPostsNew",
+  async (subreddit) => {
+    return await fetchPostsNew(subreddit);
+  }
+);
 
-export const loadTopPosts = createAsyncThunk('app/loadTopPosts', async (subreddit) => {
-  return await fetchTopPosts(subreddit);
-});
+export const loadPostsTop = createAsyncThunk(
+  "app/loadSubredditPostsTop",
+  async (subreddit) => {
+    return await fetchPostsTop(subreddit);
+  }
+);
 
-//fetch sub about
-//fetch comments
-//fetch search results
+export const loadComments = createAsyncThunk(
+  "app/loadComments",
+  async ({index, permalink}) => {
+    const comments = await fetchComments(permalink);
+    return { index: index, comments: comments };
+  }
+);
+
+export const loadSubredditAbout = createAsyncThunk(
+  "app/loadSubredditAbout",
+  async (subreddit) => {
+    return await fetchSubredditAbout(subreddit);
+  }
+);
+
+export const loadSearchResults = createAsyncThunk(
+  "app/loadSearchResults",
+  async (searchTerm) => {
+    return await fetchSearchResults(searchTerm);
+  }
+);
 
 export const appSlice = createSlice({
-  name: 'app',
+  name: "app",
   initialState: {
-    isLoading: false,
-    isError: false,
     posts: [],
+    about: [],
+    isLoading: false,
+    error: false,
+    searchTerm: '',
   },
   reducers: {
-    
+    setShowingComments: (state, action) => {
+      // console.log(action);
+      state.posts[action.payload.index].showingComments =
+        action.payload.showingComments;
+    },
+    setCommentsNum: (state, action) => {
+      // console.log(action);
+      state.posts[action.payload.index].commentsNum =
+        action.payload.commentsNum;
+    },
+    setIsLoadingComments: (state, action) => {
+      // console.log(action);
+      state.posts[action.payload.index].isLoadingComments =
+        action.payload.isLoadingComments;
+    },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+    }
   },
   extraReducers: {
-    //load hot posts
-    [loadHotPosts.pending]: (state, action) => {
+    // LOAD HOT POSTS
+    [loadPostsHot.pending]: (state, action) => {
+      // console.log('pending')
       state.isLoading = true;
-      state.isError = false;
+      state.error = false;
     },
-    [loadHotPosts.fulfilled]: (state, action) => {
-      state.asideError = false;
-      state.isError = false;
-      state.posts = action.payload.data.children;
-    },
-    [loadHotPosts.rejected]: (state, action) => {
+    [loadPostsHot.fulfilled]: (state, action) => {
+      // console.log('fulfilled')
+      state.posts = action.payload;
+      state.posts.map((post) => {
+        post.showingComments = false;
+        post.comments = [];
+        post.commentsNum = 3;
+        post.isLoadingComments = false;
+        return post;
+      });
       state.isLoading = false;
-      state.isError = true;
-    }
+    },
+    [loadPostsHot.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.isLoading = false;
+      state.error = true;
+    },
+    // LOAD NEW POSTS
+    [loadPostsNew.pending]: (state, action) => {
+      // console.log('pending')
+      state.isLoading = true;
+      state.error = false;
+    },
+    [loadPostsNew.fulfilled]: (state, action) => {
+      // console.log('fulfilled')
+      state.posts = action.payload;
+      state.posts.map((post) => {
+        post.showingComments = false;
+        post.comments = [];
+        post.commentsNum = 3;
+        post.isLoadingComments = false;
+        return post;
+      });
+      state.isLoading = false;
+    },
+    [loadPostsNew.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.isLoading = false;
+      state.error = true;
+    },
+    // LOAD TOP POSTS
+    [loadPostsTop.pending]: (state, action) => {
+      // console.log('pending')
+      state.isLoading = true;
+      state.error = false;
+    },
+    [loadPostsTop.fulfilled]: (state, action) => {
+      // console.log('fulfilled')
+      state.posts = action.payload;
+      state.posts.map((post) => {
+        post.showingComments = false;
+        post.comments = [];
+        post.commentsNum = 3;
+        post.isLoadingComments = false;
+        return post;
+      });
+      state.isLoading = false;
+    },
+    [loadPostsTop.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.isLoading = false;
+      state.error = true;
+    },
+    // LOAD COMMENTS
+    [loadComments.pending]: (state, action) => {
+      // console.log('pending')
+      state.posts[action.meta.arg.index].comments = [];
+      state.posts[action.meta.arg.index].isLoadingComments = true;
 
-    //load new posts
+      // console.log(state.posts[action.meta.arg.index].isLoadingComments);
+    },
+    [loadComments.fulfilled]: (state, action) => {
+      // console.log('fulfilled');
+      state.posts[action.payload.index].comments = action.payload.comments;
+      state.posts[action.meta.arg.index].isLoadingComments = false;
+    },
+    [loadComments.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.posts[action.meta.arg.index].isLoadingComments = false;
+    },
+    //LOAD SUB ABOUT
+    [loadSubredditAbout.pending]: (state, action) => {
+      // console.log('pending')
+      state.isLoading = true;
+      state.error = false;
+    },
+    [loadSubredditAbout.fulfilled]: (state, action) => {
+      // console.log('fulfilled');
+      state.about = action.payload;
+      state.isLoading = false;
+    },
+    [loadSubredditAbout.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.isLoading = false;
+      state.error = true;
+    },
+    //LOAD SEARCH TERM
+    [loadSearchResults.pending]: (state, action) => {
+      // console.log('pending')
+      state.isLoading = true;
+      state.error = false;
+    },
+    [loadSearchResults.fulfilled]: (state, action) => {
+      // console.log('fulfilled')
+      state.posts = action.payload;
+      state.posts.map((post) => {
+        post.showingComments = false;
+        post.comments = [];
+        post.commentsNum = 3;
+        post.isLoadingComments = false;
+        return post;
+      });
+      state.isLoading = false;
+    },
+    [loadSearchResults.rejected]: (state, action) => {
+      // console.log('rejected')
+      state.isLoading = false;
+      state.error = true;
+    },
+  },
+});
 
-    //load top posts
-  }
-})
+export const selectPosts = (state) => state.app.posts;
+export const selectAbout = (state) => state.app.about;
+export const selectIsLoading = (state) => state.app.isLoading;
+export const selectError = (state) => state.app.error;
+export const selectSearchTerm = (state) => state.app.searchTerm;
 
-//loadHotPosts based on if a subreddit or home
-
-//loadNewPosts based on if a subreddit or home
-
-//loadTopPosts based on if a subreddit or home
-
-
-export const selectPosts = (state) => state.appSlice.posts;
+export const { setShowingComments, setCommentsNum, setIsLoadingComments, setSearchTerm } = appSlice.actions;
 
 export default appSlice.reducer;
