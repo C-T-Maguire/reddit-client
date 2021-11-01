@@ -10,7 +10,6 @@ import './Comments.css';
 export const Comments = (props) => {
   const { post, postIndex } = props;
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
   const comments = post.comments.slice(0, post.comments.length - 1);
   const commentsNum = post.commentsNum;
 
